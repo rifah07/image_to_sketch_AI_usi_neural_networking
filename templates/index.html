@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image to Sketch Converter</title>
+  </head>
+  <body>
+    <h1>Convert Image to Sketch</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <label for="image">Choose an image to upload:</label>
+      <input type="file" id="image" name="image" accept="image/*" />
+      <br /><br />
+      <button type="submit">Convert to Sketch</button>
+    </form>
+    <div id="result">
+      {% if sketch_url %}
+      <h2>Sketch Result:</h2>
+      <img src="{{ sketch_url }}" alt="Sketch Image" />
+      {% else %}
+      <p>No sketch generated yet.</p>
+      {% endif %}
+    </div>
+  </body>
+</html>
