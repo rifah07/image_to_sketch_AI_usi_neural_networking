@@ -17,12 +17,12 @@ os.makedirs(app.config['RESULT_FOLDER'], exist_ok=True)
 
 # Load pre-trained model from TensorFlow Hub
 MODEL_URL = 'https://tfhub.dev/google/magenta/arbitrary-image-stylization-v1-256/2'
-LOCAL_MODEL_PATH = None  # Set this to the path if you have a local model
+#LOCAL_MODEL_PATH = None  # Set this to the path if you have a local model
 
-if LOCAL_MODEL_PATH:
-    model = tf.keras.models.load_model(LOCAL_MODEL_PATH, custom_objects={'KerasLayer': hub.KerasLayer})
-else:
-    model = hub.load(MODEL_URL)
+#if LOCAL_MODEL_PATH:
+ #   model = tf.keras.models.load_model(LOCAL_MODEL_PATH, custom_objects={'KerasLayer': hub.KerasLayer})
+#else:
+model = hub.load(MODEL_URL)
 
 def load_img(path_to_img):
     max_dim = 512
@@ -50,18 +50,18 @@ def convert_to_sketch(image_path):
     sketch_bw = ImageOps.grayscale(sketch)
     
     # Convert PIL image to numpy array for OpenCV processing
-    sketch_bw_np = np.array(sketch_bw)
+    #sketch_bw_np = np.array(sketch_bw)
     
     # Apply Canny edge detection
-    edges = cv2.Canny(sketch_bw_np, 100, 200)
+    #edges = cv2.Canny(sketch_bw_np, 100, 200)
     
     # Invert colors
-    edges_inverted = cv2.bitwise_not(edges)
+    #edges_inverted = cv2.bitwise_not(edges)
     
     # Convert edges back to a PIL image
-    edges_pil = Image.fromarray(edges_inverted)
+    #edges_pil = Image.fromarray(edges_inverted)
     
-    return edges_pil
+    return sketch_bw
 
 @app.route('/')
 def index():
